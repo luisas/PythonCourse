@@ -1,14 +1,14 @@
 
 # coding: utf-8
 
-# In[160]:
+# In[184]:
 
 
 #fasta_filename = "/Users/luisasantus/Desktop/PYT/PythonCourse/data/example_short.fasta"
 #fasta_filename = "/Users/luisasantus/Desktop/PYT/PythonCourse/data/sample_fasta_files/sample_fasta1.fa"
 
 
-# In[46]:
+# In[185]:
 
 
 def FASTA_iterator(fasta_filename): 
@@ -26,7 +26,7 @@ def FASTA_iterator(fasta_filename):
     yield(identifier, sequence)
 
 
-# In[47]:
+# In[186]:
 
 
 def get_max_sequence_length_from_FASTA_file(fasta_filename): 
@@ -34,7 +34,7 @@ def get_max_sequence_length_from_FASTA_file(fasta_filename):
     return max(list)
 
 
-# In[49]:
+# In[187]:
 
 
 def get_min_sequence_length_from_FASTA_file ( fasta_filename ): 
@@ -42,7 +42,7 @@ def get_min_sequence_length_from_FASTA_file ( fasta_filename ):
     return min(list)
 
 
-# In[61]:
+# In[188]:
 
 
 def get_longest_sequences_from_FASTA_file( fasta_filename ):
@@ -52,7 +52,7 @@ def get_longest_sequences_from_FASTA_file( fasta_filename ):
     return list
 
 
-# In[66]:
+# In[189]:
 
 
 def get_shortest_sequences_from_FASTA_file( fasta_filename ): 
@@ -62,13 +62,13 @@ def get_shortest_sequences_from_FASTA_file( fasta_filename ):
     return list
 
 
-# In[119]:
+# In[190]:
 
 
 aminoacid_mw = {'A': 89.09, 'C': 121.16, 'E': 147.13, 'D': 133.1, 'G': 75.07, 'F': 165.19, 'I': 131.18, 'H': 155.16, 'K': 146.19, 'M': 149.21, 'L': 131.18, 'N': 132.12, 'Q': 146.15, 'P': 115.13, 'S': 105.09, 'R': 174.2, 'T': 119.12, 'W': 204.23, 'V': 117.15, 'Y': 181.19}
 
 
-# In[173]:
+# In[191]:
 
 
 def get_weight_seq(sequence):
@@ -79,11 +79,19 @@ def get_molecular_weights( fasta_filename ):
     return dict(((identifier.upper(), get_weight_seq(sequence)) for identifier,sequence in iterator))
 
 
-# In[174]:
+# In[192]:
+
+
+##fasta_filename = "/Users/luisasantus/Desktop/PYT/PythonCourse/data/example_short.fasta"
+#get_molecular_weights( fasta_filename )
+
+
+# In[198]:
 
 
 def get_sequence_with_max_molecular_weight( fasta_filename ):
     dict_weigths = get_molecular_weights( fasta_filename )
+    max_weight = max(dict_weigths.values())
     for identifier,sequence in FASTA_iterator(fasta_filename):
         if get_weight_seq(sequence) == max_weight:
             return (identifier,sequence)
